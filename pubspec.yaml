@@ -1,0 +1,23 @@
+name: dart_hooks
+description: Custom Git Hooks
+version: 1.0.0
+repository: https://github.com/errorempire/DartHooks
+
+environment:
+  sdk: ^3.0.4
+
+publish_to: none
+
+executables:
+  init: bin/init
+  pre_commit: bin/pre_commit
+  pre_push: bin/pre_push
+  apply: bin/apply
+  destroy: bin/destroy
+
+dependencies:
+  json2yaml: ^3.0.1
+  yaml: ^3.1.2
+
+dev_dependencies:
+  lints: ^2.0.0
