@@ -1,34 +1,21 @@
-import 'dart:convert';
-import 'dart:io';
+import "dart:convert";
+import "dart:io";
 
-import 'package:dart_hooks/classes.dart';
-import 'package:json2yaml/json2yaml.dart';
+import "package:dart_hooks/globals.dart";
+import "package:json2yaml/json2yaml.dart";
 
 void main() async {
-  _createConfigFile();
-  _checkHooksDirectory();
+  await _createConfigFile();
 }
 
-void _createConfigFile() {
-  File("dart_hooks.yaml").writeAsStringSync(json2yaml(json.decode(json.encode({
+Future<void> _createConfigFile() async {
+  await File(configFile).writeAsString(json2yaml(json.decode(json.encode({
     "pre-commit": {
-      "commands": ["dart analyze"]
+      "commands": ["dart --version", "flutter --version"]
     },
     "pre-push": {
-      "commands": ["dart analyze"]
+      "commands": ["dart --version", "flutter --version"]
     }
   }))));
-  print("");
-  print("${Colorize.blue("[ INFO ]")} Configuration file have been created");
-  print("");
-}
-
-void _checkHooksDirectory() async {
-  if (!(await Directory('.git/hooks').exists())) {
-    print("");
-    print(
-        "${Colorize.red("[ ERROR ]")} Directory does not appear to be a git repository.");
-    print("");
-    exit(1);
-  }
+  logger.info("Configuration file have been created");
 }

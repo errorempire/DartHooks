@@ -1,6 +1,7 @@
-import 'package:dart_hooks/dart_hooks.dart';
+import "package:dart_hooks/checks.dart";
+import "package:dart_hooks/command_executor.dart";
 
 void main() async {
-  check();
-  performHook("pre-push");
+  await checkConfigurationFile();
+  await applyHooks("pre-push");
 }
