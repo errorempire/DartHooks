@@ -1,0 +1,31 @@
+name: 🔍 Code Analysis
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v2
+
+      - name: 🎯 Set up Dart SDK
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 3.0.4
+
+      - name: 📦 Install Dart Dependencies
+        run: dart pub get
+
+      - name: 🎨 Check Dart Formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: 🕵️‍♀️ Analyze Dart Code
+        run: dart analyze
+
+      - name: 📝 Check Package Publishing
+        run: dart pub publish --dry-run

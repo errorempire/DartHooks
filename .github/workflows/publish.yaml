@@ -1,0 +1,33 @@
+name: 🚀 Publish Dart Package
+
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+*"
+
+jobs:
+  publish:
+    permissions:
+      id-token: write
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🎯 Set up Dart SDK
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 3.0.4
+
+      - name: 📦 Install Dart Dependencies
+        run: dart pub get
+
+      - name: 🎨 Check Dart Formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: 🕵️‍♀️ Analyze Dart Code
+        run: dart analyze
+
+      - name: 🚀 Publish to pub.dev
+        run: dart pub publish --force
