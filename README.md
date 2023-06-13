@@ -15,7 +15,7 @@ Supported hooks:
 ## Installation
 
 ```sh
-dart pub add dart_hooks --dev --git-url="https://github.com/errorempire/DartHooks.git"
+dart pub add dart_hooks --dev
 dart pub get
 ```
 
@@ -27,7 +27,7 @@ Initialize the hook config file
 dart run dart_hooks:init
 ```
 
-Modify the `dart_hooks.yaml` file then run the following command to apply the hook(s)
+Modify the `dart_hooks.yaml` file then run the following command to apply the hooks
 
 ```sh
 dart run dart_hooks:apply
@@ -35,7 +35,7 @@ dart run dart_hooks:apply
 
 ## Destroy
 
-The following command will delete the hook(s) and the config file
+The following command will delete the hooks and the config file
 
 ```sh
 dart run dart_hooks:destroy
