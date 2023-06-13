@@ -1,6 +1,6 @@
 import "dart:io";
 
-import "package:dart_hooks/globals.dart";
+import "globals.dart";
 
 Future<void> checkConfigurationFile() async {
   if (!await File(configFile).exists()) {
@@ -10,7 +10,7 @@ Future<void> checkConfigurationFile() async {
 }
 
 Future<void> checkStagedChanges() async {
-  ProcessResult result = await Process.run(
+  final ProcessResult result = await Process.run(
       "git", ["diff-index", "--cached", "--quiet", "HEAD", "--"]);
 
   if (result.exitCode != 0) {

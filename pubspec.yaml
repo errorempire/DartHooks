@@ -1,19 +1,20 @@
 name: dart_hooks
-description: Custom Git Hooks
-version: 1.0.0
+description: Automating the integration and management of Git Hooks in Dart projects
+version: 1.0.2
 repository: https://github.com/errorempire/DartHooks
+homepage: https://github.com/errorempire/DartHooks
+documentation: https://github.com/errorempire/DartHooks/blob/main/README.md
+issue_tracker: https://github.com/errorempire/DartHooks/issues
 
 environment:
   sdk: ^3.0.4
 
-publish_to: none
-
 executables:
-  init: bin/init
-  pre_commit: bin/pre_commit
-  pre_push: bin/pre_push
-  apply: bin/apply
-  destroy: bin/destroy
+  init:
+  pre_commit:
+  pre_push:
+  apply:
+  destroy:
 
 dependencies:
   json2yaml: ^3.0.1

@@ -1,10 +1,11 @@
 import "dart:io";
 
-import "package:dart_hooks/classes.dart";
+import "classes.dart";
 import "package:yaml/yaml.dart";
 
-final String configFile = "dart_hooks.yaml";
-final Iterable keys = loadYaml(File(configFile).readAsStringSync()).keys;
+const String configFile = "dart_hooks.yaml";
+final Iterable<String> keys =
+    loadYaml(File(configFile).readAsStringSync()).keys as Iterable<String>;
 
 File config = File(configFile);
 Logger logger = Logger();
