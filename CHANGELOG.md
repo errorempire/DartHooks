@@ -9,3 +9,7 @@
 ## 1.0.2
 
 - Package validation for pub.dev
+
+## 1.0.3
+
+- Documentation update

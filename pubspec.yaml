@@ -1,6 +1,6 @@
 name: dart_hooks
 description: Automating the integration and management of Git Hooks in Dart projects
-version: 1.0.2
+version: 1.0.3
 repository: https://github.com/errorempire/DartHooks
 homepage: https://github.com/errorempire/DartHooks
 documentation: https://github.com/errorempire/DartHooks/blob/main/README.md
