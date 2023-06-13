@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+# Initialize the dart_hooks.yaml file
+dart run dart_hooks:init
+
+# If you remove or add a hook in the dart_hooks.yaml file the new hook needs to be applied
+# If you just update the commands list, you do not have to run the following commands
+dart run dart_hooks:apply
+
+# To remove the hooks and the package
+dart run dart_hooks:destroy
+dart pub remove dart_hooks

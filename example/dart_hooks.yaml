@@ -1,0 +1,13 @@
+---
+pre-commit:
+  commands:
+    - dart analyze
+pre-push:
+  commands:
+    - dart analyze
+
+---
+pre-commit:
+  commands: dart analyze
+pre-push:
+  commands: dart analyze
