@@ -1,19 +1,13 @@
 import "dart:io";
 
+import "package:dart_hooks/checks.dart";
 import "package:dart_hooks/command_executor.dart";
 import "package:dart_hooks/globals.dart";
 
 void main() async {
-  await _checkHooksDirectory();
+  await checkHooksDirectory();
   await removeHooks();
   await _applyHooks();
-}
-
-Future<void> _checkHooksDirectory() async {
-  if (!await Directory(hooksDirectory()).exists()) {
-    logger.error("Directory does not appear to be a git repository");
-    exit(1);
-  }
 }
 
 Future<void> _applyHooks() async {
@@ -31,6 +25,6 @@ Future<void> _updateGitHook(String cmd, String key) async {
 dart run dart_hooks:$cmd
 """;
 
-  await File(hooksDirectory(key: key)).writeAsString(templateScript);
-  await Process.run("chmod", ["755", hooksDirectory(key: key)]);
+  await File(hooksDirectory(key)).writeAsString(templateScript);
+  await Process.run("chmod", ["755", hooksDirectory(key)]);
 }
