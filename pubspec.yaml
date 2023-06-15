@@ -17,7 +17,6 @@ executables:
   destroy:
 
 dependencies:
-  json2yaml: ^3.0.1
   yaml: ^3.1.2
 
 dev_dependencies:

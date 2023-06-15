@@ -18,3 +18,10 @@ Future<void> checkStagedChanges() async {
     exit(result.exitCode);
   }
 }
+
+Future<void> checkHooksDirectory() async {
+  if (!await Directory(hooksDirectory()).exists()) {
+    logger.error("Directory does not appear to be a git repository");
+    exit(1);
+  }
+}

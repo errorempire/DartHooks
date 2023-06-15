@@ -1,21 +1,22 @@
-import "dart:convert";
 import "dart:io";
 
+import "package:dart_hooks/classes.dart";
 import "package:dart_hooks/globals.dart";
-import "package:json2yaml/json2yaml.dart";
 
 void main() async {
   await _createConfigFile();
 }
 
 Future<void> _createConfigFile() async {
-  await File(configFile).writeAsString(json2yaml(json.decode(json.encode({
-    "pre-commit": {
+  const Stage data = Stage(stages: {
+    "pre-commit": Command(commands: {
       "commands": ["dart --version", "flutter --version"]
-    },
-    "pre-push": {
+    }),
+    "pre-push": Command(commands: {
       "commands": ["dart --version", "flutter --version"]
-    }
-  }))));
+    })
+  });
+
+  File(configFile).writeAsStringSync(YamlConverter().toYaml(data));
   logger.info("Configuration file have been created");
 }

@@ -4,13 +4,12 @@ import "classes.dart";
 import "package:yaml/yaml.dart";
 
 const String configFile = "dart_hooks.yaml";
-final Iterable<String> keys =
-    loadYaml(File(configFile).readAsStringSync()).keys as Iterable<String>;
+final Iterable keys = loadYaml(File(configFile).readAsStringSync()).keys;
 
 File config = File(configFile);
 Logger logger = Logger();
 
-String hooksDirectory({String? key}) {
+String hooksDirectory([String? key]) {
   if (key == null) return ".git/hooks";
   return ".git/hooks/$key";
 }
