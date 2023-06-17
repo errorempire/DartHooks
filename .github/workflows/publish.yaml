@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Changelog Update 📄
+      - name: 📄 Changelog Update
         uses: bcsizmadia/changelog_update@main
         with:
           token: ${{ secrets.TOKEN }}
