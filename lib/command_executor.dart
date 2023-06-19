@@ -5,10 +5,9 @@ import "classes.dart";
 import "globals.dart";
 import "package:yaml/yaml.dart";
 
-Future<CommandResult> startProcess(dynamic command, String hookType) async {
+Future<CommandResult> startProcess(String command, String hookType) async {
   // if (hookType == "pre-commit") await checkStagedChanges();
 
-  command.toString();
   final List<String> parts = command.split(" ");
   final String executable = parts[0];
   final List<String> arguments = parts.skip(1).toList();
@@ -56,22 +55,19 @@ void printSuccess(CommandResult result, String type) {
 }
 
 Future<void> applyHooks(String hookType) async {
-  final commands =
-      loadYaml(await File(configFile).readAsString())[hookType]["commands"];
+  final Map<dynamic, dynamic> yamlFile =
+      loadYaml(await File(configFile).readAsString()) as Map<dynamic, dynamic>;
+  final commands = yamlFile[hookType]["commands"];
 
-  final Type type = commands.runtimeType;
   final List<CommandResult> results = [];
 
-  if (type == String && commands != null) {
-    results.add(await startProcess(commands, hookType));
-  }
+  if (commands is String) results.add(await startProcess(commands, hookType));
 
-  if (type == YamlList && commands.isNotEmpty) {
+  if (commands is YamlList && commands.isNotEmpty) {
     for (var command in commands) {
-      results.add(await startProcess(command, hookType));
+      results.add(await startProcess(command as String, hookType));
     }
   }
-
   printInfo(results, hookType);
 }
 
