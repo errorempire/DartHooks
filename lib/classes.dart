@@ -12,19 +12,6 @@ class CommandResult {
   });
 }
 
-class Colorize {
-  static const _red = "\x1B[31m";
-  static const _green = "\x1B[32m";
-  static const _blue = "\x1B[34m";
-  static const _yellow = "\x1B[33m";
-  static const _reset = "\x1B[0m";
-
-  static String red(dynamic input) => "$_red$input$_reset";
-  static String green(dynamic input) => "$_green$input$_reset";
-  static String blue(dynamic input) => "$_blue$input$_reset";
-  static String yellow(dynamic input) => "$_yellow$input$_reset";
-}
-
 class Logger {
   void info(String message) {
     print("");
