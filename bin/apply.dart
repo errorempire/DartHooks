@@ -11,8 +11,10 @@ void main() async {
 }
 
 Future<void> _applyHooks() async {
+  final Iterable<String> keys = yamlMap.keys.cast<String>();
   for (String key in keys) {
-    final String cmd = "${key.substring(0, 3)}_${key.substring(3 + 1)}";
+    final String cmd = "${key.substring(0, 3)}_${key.substring(4)}";
+
     await _updateGitHook(cmd, key);
   }
   logger.info("Hooks have been updated");
