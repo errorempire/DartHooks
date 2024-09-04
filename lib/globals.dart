@@ -1,7 +1,8 @@
 import "dart:io";
 
-import "classes.dart";
 import "package:yaml/yaml.dart";
+
+import "classes/logger.dart";
 
 const String configFile = "dart_hooks.yaml";
 final Map yamlMap = loadYaml(File(configFile).readAsStringSync()) as Map;

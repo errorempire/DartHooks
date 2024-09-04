@@ -1,7 +1,7 @@
 import "dart:convert";
 import "dart:io";
 
-import "classes.dart";
+import "classes/command_result.dart";
 import "globals.dart";
 import "package:yaml/yaml.dart";
 
@@ -42,16 +42,16 @@ void printError(CommandResult result, String type) {
   logger
     ..cmdError("Type", type)
     ..cmdError("Command", result.command)
-    ..cmdError("Exit Code", result.exitCode)
+    ..cmdError("Exit Code", result.exitCode.toString())
     ..cmdError("Error", result.stderr);
   exit(result.exitCode);
 }
 
 void printSuccess(CommandResult result, String type) {
   logger
-    ..cmdSuccess(type, type: "Type")
-    ..cmdSuccess(result.command, type: "Command")
-    ..cmdSuccess(result.stdout);
+    ..cmdSuccess("Type", type)
+    ..cmdSuccess("Command", result.command)
+    ..cmdSuccess("Output", result.stdout);
 }
 
 Future<void> applyHooks(String hookType) async {
