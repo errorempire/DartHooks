@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: 📥 Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🎯 Set up Dart SDK
         uses: dart-lang/setup-dart@v1
