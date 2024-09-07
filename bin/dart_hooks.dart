@@ -1,18 +1,10 @@
-import 'package:dart_hooks/arguments.dart';
-import 'package:dart_hooks/classes/hooks.dart';
+import 'package:args/command_runner.dart';
+import "package:dart_hooks/commands/exports.dart";
 
-void main(List<String> arguments) {
-  if (arguments.isEmpty) {
-    Hooks().help();
-    return;
-  }
-
-  final String command = arguments[0];
-
-  if (cliArguments.containsKey(command)) {
-    cliArguments[command]?['command']();
-  } else {
-    Hooks().help();
-    return;
-  }
+void main(List<String> args) async {
+  CommandRunner<String>('dart_hooks', 'DartHooks - Automating the integration and management of Git Hooks in Dart projects')
+    ..addCommand(InitCommand())
+    ..addCommand(ApplyCommand())
+    ..addCommand(DestroyCommand())
+    ..run(args);
 }
