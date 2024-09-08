@@ -17,3 +17,4 @@ dependencies:
 
 dev_dependencies:
   lints: ^4.0.0
+  grinder: ^0.9.5
