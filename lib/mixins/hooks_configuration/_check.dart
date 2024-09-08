@@ -8,14 +8,14 @@ mixin HooksConfigurationCheck on Logger {
       success("Configuration file already exists");
       return true;
     } else {
-      error("Configuration file does not exist");
+      warning("Configuration file does not exist");
       return false;
     }
   }
 
   Future<void> checkGitDirectory() async {
     if (!Directory(".git").existsSync()) {
-      error("Directory does not appear to be a git repository");
+      warning("Directory does not appear to be a git repository");
       exit(1);
     } else {
       success("Directory is a git repository");

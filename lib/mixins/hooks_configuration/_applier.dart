@@ -26,5 +26,6 @@ ${commands.join("\n")}
     }
   }
 
-  static String hooksDirectory([String? key]) => key == null ? ".git/hooks" : ".git/hooks/$key";
+  static String hooksDirectory([String? key]) =>
+      key == null ? ".git/hooks" : ".git/hooks/$key";
 }

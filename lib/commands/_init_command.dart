@@ -4,7 +4,12 @@ import 'package:args/command_runner.dart';
 
 import '../mixins/exports.dart';
 
-class InitCommand extends Command<String> with Logger, HooksConfigurationCheck, HooksConfigurationWriter, HooksConfigurationLoader {
+class InitCommand extends Command<String>
+    with
+        Logger,
+        HooksConfigurationCheck,
+        HooksConfigurationWriter,
+        HooksConfigurationLoader {
   @override
   String get description => 'Initialize configuration';
 

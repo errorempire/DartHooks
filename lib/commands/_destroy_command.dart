@@ -4,7 +4,8 @@ import 'package:args/command_runner.dart';
 
 import '../mixins/exports.dart';
 
-class DestroyCommand extends Command<String> with Logger, HooksConfigurationCheck {
+class DestroyCommand extends Command<String>
+    with Logger, HooksConfigurationCheck {
   @override
   String get description => 'Remove configuration';
 

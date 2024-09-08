@@ -5,7 +5,12 @@ import 'package:args/command_runner.dart';
 import '../mixins/exports.dart';
 
 class ApplyCommand extends Command<String>
-    with Logger, HooksConfigurationCheck, HooksConfigurationLoader, HooksConfigurationWriter, HooksConfigurationApplier {
+    with
+        Logger,
+        HooksConfigurationCheck,
+        HooksConfigurationLoader,
+        HooksConfigurationWriter,
+        HooksConfigurationApplier {
   @override
   String get description => 'Apply hooks configuration';
 
