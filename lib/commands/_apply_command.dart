@@ -7,7 +7,7 @@ import '../mixins/exports.dart';
 class ApplyCommand extends Command<String>
     with
         Logger,
-        HooksConfigurationCheck,
+        HooksConfigurationAnalyzer,
         HooksConfigurationLoader,
         HooksConfigurationWriter,
         HooksConfigurationApplier {

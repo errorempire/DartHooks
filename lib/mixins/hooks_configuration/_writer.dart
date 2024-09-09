@@ -4,18 +4,18 @@ import 'package:yaml_writer/yaml_writer.dart';
 
 import '../exports.dart';
 
-mixin HooksConfigurationWriter on Logger, HooksConfigurationCheck {
+mixin HooksConfigurationWriter on Logger, HooksConfigurationAnalyzer {
   Future<void> createConfigurationFile() async {
     if (await checkDartHooksConfigFile()) {
       if (_promptOverwriteConfigFile()) {
         info("Creating configuration file...");
         _writeYamlConfiguration();
-        success("Configuration file has been created");
+        success("Configuration file has been created.");
       }
     } else {
       info("Creating configuration file...");
       _writeYamlConfiguration();
-      success("Configuration file has been created");
+      success("Configuration file has been created.");
     }
   }
 
@@ -37,6 +37,7 @@ mixin HooksConfigurationWriter on Logger, HooksConfigurationCheck {
         "commands": ["dart --version", "flutter --version"]
       }
     };
-    YamlWriter().write(exampleConfig);
+
+    configFile.writeAsStringSync(YamlWriter().write(exampleConfig));
   }
 }

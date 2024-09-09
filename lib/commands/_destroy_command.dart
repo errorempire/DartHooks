@@ -5,7 +5,11 @@ import 'package:args/command_runner.dart';
 import '../mixins/exports.dart';
 
 class DestroyCommand extends Command<String>
-    with Logger, HooksConfigurationCheck {
+    with
+        Logger,
+        HooksConfigurationAnalyzer,
+        HooksConfigurationLoader,
+        HooksConfigurationDestroyer {
   @override
   String get description => 'Remove configuration';
 
@@ -15,7 +19,8 @@ class DestroyCommand extends Command<String>
   @override
   FutureOr<String>? run() async {
     await checkGitDirectory();
-    // await checkConfigurationFile(toRemove: true, toApply: false, toExecute: false);
+    await removeConfigurationFile();
+    await removeAppliedHooks();
     return '';
   }
 }

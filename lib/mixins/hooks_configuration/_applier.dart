@@ -6,7 +6,6 @@ mixin HooksConfigurationApplier on Logger, HooksConfigurationLoader {
   Future<void> applyHooks() async {
     if (await checkDartHooksConfigFile()) {
       final List loadedConfig = await loadConfigurationFile();
-      if (loadedConfig.isEmpty) error("Configuration file is empty.");
 
       for (var entry in loadedConfig) {
         final String key = entry.keys.first as String;
@@ -19,10 +18,10 @@ ${commands.join("\n")}
 """);
         await Process.run("chmod", ["755", hooksDirectory(key)]);
 
-        info("[$key] Hooks have been updated");
+        info("[$key] Hooks have been updated.");
       }
     } else {
-      print("Configuration file is empty or does not exist.");
+      error("Configuration file is empty or does not exist.");
     }
   }
 

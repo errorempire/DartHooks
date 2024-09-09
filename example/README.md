@@ -65,8 +65,10 @@ dart run dart_hooks apply
 ```yaml
 ---
 pre-commit:
+  commands:
     - dart analyze
 pre-push:
+  commands:
     - dart analyze
 ```
 
@@ -74,8 +76,10 @@ OR:
 
 ```yaml
 ---
-pre-commit: [dart analyze]
-pre-push: [dart analyze]
+pre-commit:
+  commands: [dart analyze]
+pre-push:
+  commands: [dart analyze]
 ```
 
 ## How to Uninstall 🗑️

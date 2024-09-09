@@ -4,20 +4,24 @@ import 'package:yaml/yaml.dart';
 
 import '../exports.dart';
 
-mixin HooksConfigurationLoader on HooksConfigurationCheck {
+mixin HooksConfigurationLoader on HooksConfigurationAnalyzer {
   Future<List> loadConfigurationFile() async {
     final List entries = [];
 
-    final String yamlString = File("dart_hooks.yaml").readAsStringSync();
+    final String yamlString = configFile.readAsStringSync();
+
+    if (yamlString.isEmpty) {
+      error("Configuration file is empty.");
+      exit(1);
+    }
+
     final dynamic yamlData = loadYaml(yamlString);
 
     if (yamlData is Map) {
       yamlData.forEach((dynamic key, dynamic value) {
-        if (value is List) {
-          final String stageName = key as String;
-          final List commandsList = value;
-          entries.add({stageName: commandsList});
-        }
+        final String stageName = key as String;
+        final List commandsList = value["commands"] as List;
+        entries.add({stageName: commandsList});
       });
     }
     return entries;

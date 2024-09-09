@@ -7,7 +7,7 @@ import '../mixins/exports.dart';
 class InitCommand extends Command<String>
     with
         Logger,
-        HooksConfigurationCheck,
+        HooksConfigurationAnalyzer,
         HooksConfigurationWriter,
         HooksConfigurationLoader {
   @override

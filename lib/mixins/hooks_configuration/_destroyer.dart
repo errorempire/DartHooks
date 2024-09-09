@@ -3,11 +3,14 @@ import 'dart:io';
 import '../../extensions/colored_string.dart';
 import '../exports.dart';
 
-mixin HooksConfigurationDestroyer on Logger {
-  var loadedConfig = const {};
+mixin HooksConfigurationDestroyer
+    on Logger, HooksConfigurationAnalyzer, HooksConfigurationLoader {
+  Future<void> removeAppliedHooks() async {
+    final List loadedConfig = await loadConfigurationFile();
 
-  Future<void> removeConfiguration() async {
-    loadedConfig.forEach((hook, commands) {
+    for (var hookCommands in loadedConfig) {
+      final hook = hookCommands.keys.first;
+
       final hookFile = File(".git/hooks/$hook");
 
       if (hookFile.existsSync()) {
@@ -20,8 +23,16 @@ mixin HooksConfigurationDestroyer on Logger {
       } else {
         info("$hook hook file not found,${"skipping...".yellow}");
       }
-    });
-    File("dart_hooks.yaml").deleteSync();
-    info("Configuration file has been deleted");
+    }
+  }
+
+  Future<void> removeConfigurationFile() async {
+    if (await checkDartHooksConfigFile()) {
+      await configFile.delete().then((_) {
+        success("Configuration file has been deleted.");
+      }).catchError((e) {
+        error("Failed to delete configuration file: $e");
+      });
+    }
   }
 }
