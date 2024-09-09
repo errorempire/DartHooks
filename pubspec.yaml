@@ -9,16 +9,12 @@ issue_tracker: https://github.com/errorempire/DartHooks/issues
 environment:
   sdk: ^3.5.1
 
-executables:
-  init:
-  pre_commit:
-  pre_push:
-  apply:
-  destroy:
-
 dependencies:
+  args: ^2.5.0
   json2yaml: ^3.0.1
   yaml: ^3.1.2
+  yaml_writer: ^2.0.0
 
 dev_dependencies:
   lints: ^4.0.0
+  grinder: ^0.9.5
