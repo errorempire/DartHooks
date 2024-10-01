@@ -16,5 +16,5 @@ dependencies:
   yaml_writer: ^2.0.0
 
 dev_dependencies:
-  lints: ^4.0.0
+  lints: ">=4.0.0 <6.0.0"
   grinder: ^0.9.5
